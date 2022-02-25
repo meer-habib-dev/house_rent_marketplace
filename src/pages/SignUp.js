@@ -9,6 +9,7 @@ import {
 } from "firebase/auth";
 import { db } from "../firebase.config";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { toast } from "react-toastify";
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -43,6 +44,7 @@ const SignUp = () => {
       await setDoc(doc(db, "users", user?.uid), formDataCopy);
       navigate("/");
     } catch (error) {
+      toast.error('Something went wrong')
       console.log(error);
     }
   };
